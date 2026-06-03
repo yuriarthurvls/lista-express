@@ -7,6 +7,8 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
+app.use(express.urlencoded({ extended: true }));
+
 // Ex 2
 app.get('/sobre', (req, res) => {
     res.send('Esta é uma aplicação feita com Express.js');
@@ -73,10 +75,6 @@ app.get('/perfil', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
-});
-
 // Ex 14
 app.get('/lista-filmes', (req, res) => {
     const filmes = [
@@ -105,4 +103,35 @@ app.get('/filmes', (req, res) => {
     ];
 
     res.render('filmes', { filmes });
+});
+
+// Ex 17
+let videos = [
+    {
+        titulo: 'Vídeo Exemplo',
+        criador: 'Yuri',
+        descricao: 'Primeiro vídeo',
+        visualizacoes: 100,
+        curtidas: 50,
+        hashtag: '#express',
+        urlVideo: 'https://youtube.com',
+        thumbnail: 'https://via.placeholder.com/200'
+    }
+];
+
+app.get('/videos', (req, res) => {
+    res.render('videos', { videos });
+});
+
+app.get('/videos/cadastrar', (req, res) => {
+    res.render('cadastrarVideo');
+});
+
+app.post('/videos', (req, res) => {
+    videos.push(req.body);
+    res.redirect('/videos');
+});
+
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
 });

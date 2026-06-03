@@ -1,0 +1,19 @@
+<h1>Lista de Vídeos</h1>
+
+{{#each videos}}
+<div style="border:1px solid #ccc; padding:10px; margin:10px;">
+    <img src="{{thumbnail}}" width="200">
+
+    <h3>{{titulo}}</h3>
+
+    <p>Criador: {{criador}}</p>
+
+    <p>Visualizações: {{visualizacoes}}</p>
+
+    <p>Curtidas: {{curtidas}}</p>
+
+    <p>Hashtag: {{hashtag}}</p>
+
+    <a href="{{urlVideo}}" target="_blank">Assistir vídeo</a>
+</div>
+{{/each}}
